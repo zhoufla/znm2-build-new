@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: redmi_ax6_basic
+name: qihoo_360v6
 
 on:
   repository_dispatch:
@@ -20,12 +20,12 @@ on:
         default: 'false'
 
 env:
-  REPO_URL: https://github.com/sdf8057/lede.git
-  REPO_BRANCH: ipq807x
+  REPO_URL: https://github.com/sdf8057/ipq6000.git
+  REPO_BRANCH: main
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: ./config/redmi_ax6/redmi_ax6_basic.config
-  DIY_P1_SH: ./custom/redmi_ax6/basic/diy-part1.sh
-  DIY_P2_SH: ./custom/redmi_ax6/basic/diy-part2.sh
+  CONFIG_FILE: ./config/qihoo_360v6/qihoo_360v6.config
+  DIY_P1_SH: ./custom/qihoo_360v6/diy-part1.sh
+  DIY_P2_SH: ./custom/qihoo_360v6/diy-part2.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: false
@@ -47,7 +47,7 @@ jobs:
       run: |
         sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc
         sudo bash -c 'bash <(curl -s https://build-scripts.immortalwrt.eu.org/init_build_environment.sh)'
-        sudo timedatectl set-timezone "$TZ"
+        sudo timedatectl set-timezone $TZ
         sudo mkdir -p /workdir
         sudo chown $USER:$GROUPS /workdir
 
@@ -155,9 +155,9 @@ jobs:
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
-        echo "::set-output name=release_tag::redmi_ax6_basic_$(date +"%Y.%m.%d-%H%M")"
+        echo "::set-output name=release_tag::qihoo_360v6_$(date +"%Y.%m.%d-%H%M")"
         touch release.txt
-        echo "redmi_ax6_basic firmware" >> release.txt
+        echo "qihoo_360v6 firmware" >> release.txt
         [ $UPLOAD_COWTRANSFER = true ] && echo "🔗 [Cowtransfer](${{ steps.cowtransfer.outputs.url }})" >> release.txt
         [ $UPLOAD_WETRANSFER = true ] && echo "🔗 [WeTransfer](${{ steps.wetransfer.outputs.url }})" >> release.txt
         echo "::set-output name=status::success"
