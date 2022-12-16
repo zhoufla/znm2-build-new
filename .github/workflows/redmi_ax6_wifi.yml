@@ -21,7 +21,7 @@ on:
 
 env:
   REPO_URL: https://github.com/sdf8057/lede.git
-  REPO_BRANCH: ipq807x
+  REPO_BRANCH: wifi
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: ./config/redmi_ax6/redmi_ax6_wifi.config
   DIY_P1_SH: ./custom/redmi_ax6/wifi/diy-part1.sh
