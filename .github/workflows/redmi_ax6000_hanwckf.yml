@@ -23,7 +23,7 @@ env:
   REPO_URL: https://github.com/hanwckf/immortalwrt-mt798x.git
   REPO_BRANCH: openwrt-21.02
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: ./config/redmi_ax6000/redmi_ax6000_hanwckf.config
+  CONFIG_FILE: ./config/redmi_ax6000_hanwckf.config
   DIY_P1_SH: ./custom/redmi_ax6000/hanwckf/diy-part1.sh
   DIY_P2_SH: ./custom/redmi_ax6000/hanwckf/diy-part2.sh
   UPLOAD_BIN_DIR: false

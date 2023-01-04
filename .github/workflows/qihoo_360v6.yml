@@ -23,7 +23,7 @@ env:
   REPO_URL: https://github.com/sdf8057/ipq6000.git
   REPO_BRANCH: main
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: ./config/qihoo_360v6/qihoo_360v6.config
+  CONFIG_FILE: ./config/qihoo_360v6.config
   DIY_P1_SH: ./custom/qihoo_360v6/diy-part1.sh
   DIY_P2_SH: ./custom/qihoo_360v6/diy-part2.sh
   UPLOAD_BIN_DIR: false
