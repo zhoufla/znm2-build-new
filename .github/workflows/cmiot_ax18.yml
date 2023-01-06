@@ -155,7 +155,7 @@ jobs:
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
-        echo "::set-output name=release_tag::cmiot_ax18_basic_$(date +"%Y.%m.%d-%H%M")"
+        echo "::set-output name=release_tag::cmiot_ax18_$(date +"%Y.%m.%d-%H%M")"
         touch release.txt
         echo "cmiot_ax18 firmware" >> release.txt
         [ $UPLOAD_COWTRANSFER = true ] && echo "🔗 [Cowtransfer](${{ steps.cowtransfer.outputs.url }})" >> release.txt
