@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: cmiot_ax18
+name: ipq6000
 
 on:
   repository_dispatch:
@@ -23,7 +23,7 @@ env:
   REPO_URL: https://github.com/sdf8057/ipq6000.git
   REPO_BRANCH: main
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: ./config/cmiot_ax18.config
+  CONFIG_FILE: ./config/ipq6000.config
   DIY_P1_SH: ./scripts/diy-part1.sh
   DIY_P2_SH: ./scripts/diy-part2.sh
   UPLOAD_BIN_DIR: false
@@ -160,9 +160,9 @@ jobs:
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
-        echo "::set-output name=release_tag::cmiot_ax18_$(date +"%Y.%m.%d-%H%M")"
+        echo "::set-output name=release_tag::ipq6000_$(date +"%Y.%m.%d-%H%M")"
         touch release.txt
-        echo "cmiot_ax18 firmware" >> release.txt
+        echo "ipq6000 firmware" >> release.txt
         [ $UPLOAD_COWTRANSFER = true ] && echo "🔗 [Cowtransfer](${{ steps.cowtransfer.outputs.url }})" >> release.txt
         [ $UPLOAD_WETRANSFER = true ] && echo "🔗 [WeTransfer](${{ steps.wetransfer.outputs.url }})" >> release.txt
         echo "::set-output name=status::success"

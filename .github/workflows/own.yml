@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: qihoo_360v6
+name: own
 
 on:
   repository_dispatch:
@@ -23,7 +23,7 @@ env:
   REPO_URL: https://github.com/sdf8057/ipq6000.git
   REPO_BRANCH: main
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: ./config/qihoo_360v6.config
+  CONFIG_FILE: ./config/own.config
   DIY_P1_SH: ./scripts/diy-part1.sh
   DIY_P2_SH: ./scripts/diy-part2.sh
   UPLOAD_BIN_DIR: false
@@ -155,9 +155,9 @@ jobs:
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
-        echo "::set-output name=release_tag::qihoo_360v6_$(date +"%Y.%m.%d-%H%M")"
+        echo "::set-output name=release_tag::own_$(date +"%Y.%m.%d-%H%M")"
         touch release.txt
-        echo "qihoo_360v6 firmware" >> release.txt
+        echo "own firmware" >> release.txt
         [ $UPLOAD_COWTRANSFER = true ] && echo "🔗 [Cowtransfer](${{ steps.cowtransfer.outputs.url }})" >> release.txt
         [ $UPLOAD_WETRANSFER = true ] && echo "🔗 [WeTransfer](${{ steps.wetransfer.outputs.url }})" >> release.txt
         echo "::set-output name=status::success"
