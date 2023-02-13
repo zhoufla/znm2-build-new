@@ -20,8 +20,8 @@ on:
         default: 'false'
 
 env:
-  REPO_URL: https://github.com/sdf8057/lede.git
-  REPO_BRANCH: nowifi
+  REPO_URL: https://github.com/coolsnowwolf/lede.git
+  REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: ./config/redmi_ax6_nowifi.config
   DIY_P1_SH: ./scripts/diy-part1.sh
@@ -48,6 +48,8 @@ jobs:
         sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc
         sudo bash -c 'bash <(curl -s https://build-scripts.immortalwrt.eu.org/init_build_environment.sh)'
         sudo timedatectl set-timezone "$TZ"
+        git config --global user.email "aa@163.com"
+        git config --global user.name "aa"
         sudo mkdir -p /workdir
         sudo chown $USER:$GROUPS /workdir
 
@@ -57,6 +59,12 @@ jobs:
         df -hT $PWD
         git clone $REPO_URL -b $REPO_BRANCH openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+
+    - name: Apply patches
+      run: |
+        cp -rf patchs/. openwrt/
+        cd openwrt
+        git am -s < lede_add_ax6.patch
 
     - name: Cache
       uses: stupidloud/cachewrtbuild@main
