@@ -64,3 +64,8 @@ r22.12.25存在几个有bug的阶段。
 4.一些插件的更新。例如，修复msd_lite播放4k源丢包的问题。  
 5.一些不重要的更新。例如，删除了1.8g这个虚假的频率。360v6现在恢复原本的qihoo_v6设备名称，uboot下刷机或者ssh下使用sysupgrade -F命令升级。  
 
+02.14更新日志：  
+1.redmi_ax6改用patch的形式添加设备支持，不再需要手动维护。  
+2.ssr-plus插件，trojan增加支持识别链接是否允许 “allowInsecure”。（only ipq6000）  
+3.原ipq6000仓库改名ipq6018并不再更新。新仓库依然叫ipq6000。  
+4.更新GitHub Actions output函数。  
