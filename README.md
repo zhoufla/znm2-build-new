@@ -1,61 +1,46 @@
-# 欢迎来到 适用于 IPQ807x||IPQ60xx||MT798X 设备的 Openwrt 编译仓库
+<div align="center">
+  <h1 align="center">
+     IPQ60xx||IPQ807x||MT798x 设备的 OpenWrt 固件发布页面
+  </h1>
+<a href="/LICENSE">
+    <img src="https://img.shields.io/github/license/sdf8057/cloudbuild?style=flat&a=1" alt="">
+  </a>
+  <a href="https://github.com/sdf8057/cloudbuild/pulls">
+    <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat" alt="">
+  </a><a href="https://github.com/sdf8057/cloudbuild/issues/new">
+    <img src="https://img.shields.io/badge/Issues-welcome-brightgreen.svg?style=flat">
+  </a><a href="https://github.com/sdf8057/cloudbuild/releases">
+    <img src="https://img.shields.io/github/release/sdf8057/cloudbuild.svg?style=flat">
+  </a><a href="hhttps://github.com/sdf8057/cloudbuild/releases">
+    <img src="https://img.shields.io/github/downloads/sdf8057/cloudbuild/total?style=flat&?">
+  </a>
+</div>
+<br>
 
-## 云编译使用方法点击[链接](https://p3terx.com/archives/build-openwrt-with-github-actions.html)
+## ipq6000固件特性：  
+1.添加cpu温度、频率以及npu占用率显示。  
+2.修复nat环回功能失效bug。  
+3.cpu超频至1.6ghz，跑分2w+。  
+4.为360/和目等设备添加原厂无线校准文件。  
+5.支持在线安装软件，手动安装请确保插件使用lua语言编写。  
+6.释放保留内存，可用内存增加50m。  
+7.此页面发布的ipq6000固件不集成无线功能。  
 
-## ipq6000仓库更新日志：  
-08.19更新日志：  
-1.添加了自动重启app，定时重启能提高使用体验，  
-2.去掉了turboacc中的bbr加速状态，kernel 4.4不支持bbr加速。  
+## 集成插件列表
+luci-app-ssr-plus  
+luci-app-openclash  
+luci-app-ddns  
+luci-app-msd_lite  
+luci-app-wol  
+luci-app-upnp  
+luci-app-uhttpd  
+luci-app-cpufreq  
+luci-app-ipsec-vpnd  
+luci-app-openvpn-server  
+luci-app-zerotier  
 
-08.24更新日志：  
-1.修复turboacc开启dns缓存再关闭之后dns解析不正常的问题，  
-2.加入nsscrypto模块，或许对于某些软件的加解密过程有些作用。  
+## 固件预览
+![image](https://github.com/sdf8057/cloudbuild/blob/main/pic/overview.png)
 
-09.20更新日志：  
-1.插件更新。  
-2.最大连接数增加到65535。  
-
-09.23更新日志：  
-1.同步上游最新更新。  
-2.cpu超频到1.8ghz。  
-
-10.03更新日志：  
-1.优化超频选项，根据跑分结果选定三档频率，1.0-1.4ghz。  
-2.优化nss失效状态下的网络性能。  
-
-10.14更新日志：  
-1.重构云编译脚本仓库，提升可读性。  
-2.添加nss状态显示。  
-
-10.16更新日志：  
-1.更好的解决的端口回环设置失效的问题。  
-2.简化云编译.config文件，方便二次修改。
-
-10.20更新日志：  
-1.梳理dnsmasq相关代码，修复bug。  
-2.默认关闭“过滤ipv6 dns解析”。  
-3.openssl升级到q版本。  
-
-11.11更新日志：  
-1.cpu频率开放更多挡位，0.8~1.8g。  
-2.云编译添加红米ax6支持。
-
-12.01更新日志：  
-1.云编译添加了360t7设备支持。  
-2.云编译添加了红米ax6000设备支持。  
-
-12.25更新日志  
-1.支持opkg在线安装软件。  
-2.删除部分不必要改动。  
-3.luci package仓库更新。  
-
-02.01更新日志：  
-1.同步openwrt-19.07稳定分支代码。  
-2.释放wifi部分的保留内存，可用内存增加51mb，现在开机约有140mb可用内存。  
-3.ipq6000仓库新增了wifi分支，恢复wifi并为和目ax18设备增加专门的bdf，效果有待测试。（该分支不包含.2提到的更新。）  
-4.一些插件的更新。例如，修复msd_lite播放4k源丢包的问题。  
-5.一些不重要的更新。例如，删除了1.8g这个虚假的频率。360v6现在恢复原本的qihoo_v6设备名称，uboot下刷机或者ssh下使用sysupgrade -F命令升级。  
-
-02.14更新日志：  
-1.redmi_ax6改用patch的形式添加设备支持，不再需要手动维护。  
-2.更新GitHub Actions output函数。  
+## 微信打赏
+![image](https://github.com/sdf8057/cloudbuild/blob/main/pic/reward_qrcode.png)

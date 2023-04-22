@@ -62,7 +62,7 @@ jobs:
 
     - name: Apply patches
       run: |
-        cp -rf patchs/. openwrt/
+        cp -rf patches/. openwrt/
         cd openwrt
         git am -s < lede_add_ax6.patch
 
