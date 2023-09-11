@@ -1,6 +1,6 @@
 <div align="center">
   <h1 align="center">
-     IPQ60xx||IPQ807x||MT798x 设备的 OpenWrt 固件发布页面
+     IPQ60xx & MT798x 设备的 OpenWrt 固件发布页面
   </h1>
 <a href="/LICENSE">
     <img src="https://img.shields.io/github/license/sdf8057/cloudbuild?style=flat&a=1" alt="">
