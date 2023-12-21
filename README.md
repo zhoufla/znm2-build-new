@@ -23,7 +23,7 @@ luci-app-upnp
 luci-app-uhttpd  
 luci-app-cpufreq  
 luci-app-openvpn-server  
-luci-app-wireguard
-luci-app-eqos
-luci-app-sqm
-luci-app-vlmcsd
+luci-app-wireguard  
+luci-app-eqos  
+luci-app-sqm  
+luci-app-vlmcsd  
