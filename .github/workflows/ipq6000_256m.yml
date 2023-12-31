@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: ipq6000
+name: ipq6000_256m
 
 on:
   repository_dispatch:
