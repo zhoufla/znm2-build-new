@@ -1,6 +1,6 @@
 <div align="center">
   <h1 align="center">
-     IPQ60xx & MT798x 设备的 OpenWrt 固件发布页面
+     IPQ60xx设备的 OpenWrt 固件发布页面
   </h1>
 </div>
 <br>
