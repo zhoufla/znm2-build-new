@@ -92,6 +92,12 @@ jobs:
     - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a
 
+    - name: Modify feeds
+      run: |
+        cd openwrt 
+        ./scripts/feeds install -a -f -p passwall_packages
+        ./scripts/feeds install -a -f -p passwall_luci
+
     - name: Install feeds
       run: |
         cd openwrt && ./scripts/feeds install -a
