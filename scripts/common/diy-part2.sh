@@ -18,3 +18,9 @@ echo -e 'CONFIG_DEVEL=y\nCONFIG_CCACHE=y' >> .config
 
 # design修改proxy链接
 sed -i -r "s#navbar_proxy = 'openclash'#navbar_proxy = 'passwall'#g" feeds/luci/themes/luci-theme-design/luasrc/view/themes/design/header.htm
+
+# DDNS-GO 
+git clone --depth=1  https://github.com/sirpdboy/luci-app-ddns-go.git package/ddns-go
+
+# mosdns
+git clone --depth=1 https://github.com/sbwml/luci-app-mosdns package/luci-app-mosdns
