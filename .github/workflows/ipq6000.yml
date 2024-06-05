@@ -96,7 +96,7 @@ jobs:
       run: |
         cd openwrt 
         ./scripts/feeds install -a -f -p passwall_packages
-        ./scripts/feeds install -a -f -p passwall_luci
+        ./scripts/feeds install -a -f -p passwall
 
     - name: Install feeds
       run: |
