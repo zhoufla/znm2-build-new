@@ -17,4 +17,4 @@ sed -i 's/192.168.1.1/192.168.100.1/g' package/base-files/files/bin/config_gener
 echo -e 'CONFIG_DEVEL=y\nCONFIG_CCACHE=y' >> .config
 
 # design修改proxy链接
-sed -i -r "s#navbar_proxy = 'openclash'#navbar_proxy = 'passwall'#g" feeds/luci/themes/luci-theme-design/luasrc/view/themes/design/header.htm
+sed -i -r "s#navbar_proxy = 'openclash'#navbar_proxy = 'passwall2'#g" feeds/luci/themes/luci-theme-design/luasrc/view/themes/design/header.htm
