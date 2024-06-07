@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: cmcc_rax3000m-emmc
+name: znm2-lede
 
 on:
   repository_dispatch:
@@ -20,12 +20,12 @@ on:
         default: 'false'
 
 env:
-  REPO_URL: https://github.com/hanwckf/immortalwrt-mt798x.git
-  REPO_BRANCH: openwrt-21.02
+  REPO_URL: https://github.com/coolsnowwolf/lede.git
+  REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: ./config/cmcc_rax3000m-emmc.config
-  DIY_P1_SH: ./scripts/common/diy-part1.sh
-  DIY_P2_SH: ./scripts/common/diy-part2.sh
+  CONFIG_FILE: ./config/znm2-lede.config
+  DIY_P1_SH: ./scripts/lede/diy-part1.sh
+  DIY_P2_SH: ./scripts/lede/diy-part2.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: false
@@ -75,12 +75,6 @@ jobs:
         df -hT $PWD
         git clone $REPO_URL -b $REPO_BRANCH openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
-
-    - name: Apply patches
-      run: |
-        cp -rf patches/. openwrt/
-        cd openwrt
-        git am -s < immortalwrt-mt798x_add_cmcc_rax3000m-emmc.patch
 
     - name: Load custom feeds
       run: |
@@ -154,7 +148,7 @@ jobs:
       uses: actions/upload-artifact@v3
       if: steps.organize.outputs.status == 'success' && !cancelled()
       with:
-        name: cmcc_rax3000m-emmc${{ env.FILE_DATE }}
+        name: redmi_ax6000_immortalwrt${{ env.FILE_DATE }}
         path: ${{ env.FIRMWARE }}
 
     - name: Upload firmware to cowtransfer
@@ -179,9 +173,9 @@ jobs:
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
-        echo "release_tag=cmcc_rax3000m-emmc_$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_OUTPUT
+        echo "release_tag=redmi_ax6000_immortalwrt_$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_OUTPUT
         touch release.txt
-        echo "cmcc_rax3000m-emmc firmware" >> release.txt
+        echo "redmi_ax6000_immortalwrt firmware" >> release.txt
         [ $UPLOAD_COWTRANSFER = true ] && echo "🔗 [Cowtransfer](${{ steps.cowtransfer.outputs.url }})" >> release.txt
         [ $UPLOAD_WETRANSFER = true ] && echo "🔗 [WeTransfer](${{ steps.wetransfer.outputs.url }})" >> release.txt
         echo "status=success" >> $GITHUB_OUTPUT
