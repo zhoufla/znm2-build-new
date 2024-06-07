@@ -22,7 +22,7 @@ on:
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede.git
   REPO_BRANCH: master
-  FEEDS_CONF: ./lede/feeds.conf.default
+  FEEDS_CONF: ./lede/feeds.conf.passwall
   CONFIG_FILE: ./config/znm2-lede-passwall.config
   DIY_P1_SH: ./scripts/lede/diy-part1.sh
   DIY_P2_SH: ./scripts/lede/diy-part2.sh
