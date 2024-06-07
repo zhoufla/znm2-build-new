@@ -23,7 +23,7 @@ env:
   REPO_URL: https://github.com/zhoufla/ipq6000.git
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: ./config/ipq6000.config
+  CONFIG_FILE: ./config/passwall2.config
   DIY_P1_SH: ./scripts/common/diy-part1.sh
   DIY_P2_SH: ./scripts/common/diy-part2.sh
   UPLOAD_BIN_DIR: false
