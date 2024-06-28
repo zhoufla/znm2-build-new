@@ -20,12 +20,12 @@ on:
         default: 'false'
 
 env:
-  REPO_URL: https://github.com/coolsnowwolf/lede.git
-  REPO_BRANCH: master
-  FEEDS_CONF: ./lede/feeds.conf.default
-  CONFIG_FILE: ./config/lede/znm2-lede.config
-  DIY_P1_SH: ./scripts/lede/diy-part1.sh
-  DIY_P2_SH: ./scripts/lede/diy-part2.sh
+  REPO_URL: https://github.com/King-Of-Knights/openwrt-6.x
+  REPO_BRANCH: main
+  FEEDS_CONF: ./feeds.conf.default
+  CONFIG_FILE: ./config/libWrt/fw3.config
+  DIY_P1_SH: ./scripts/libWrt/diy-part1.sh
+  DIY_P2_SH: ./scripts/libWrt/diy-part2.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: false
@@ -148,7 +148,7 @@ jobs:
       uses: actions/upload-artifact@v3
       if: steps.organize.outputs.status == 'success' && !cancelled()
       with:
-        name: znm2-lede-ssrp${{ env.FILE_DATE }}
+        name: znm2-libWrt-fw3${{ env.FILE_DATE }}
         path: ${{ env.FIRMWARE }}
 
     - name: Upload firmware to cowtransfer
@@ -173,9 +173,9 @@ jobs:
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
-        echo "release_tag=znm2-lede-ssrp$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_OUTPUT
+        echo "release_tag=znm2-libWrt-fw3$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_OUTPUT
         touch release.txt
-        echo "znm2-lede-ssrp firmware" >> release.txt
+        echo "znm2-libWrt-fw3 firmware" >> release.txt
         [ $UPLOAD_COWTRANSFER = true ] && echo "🔗 [Cowtransfer](${{ steps.cowtransfer.outputs.url }})" >> release.txt
         [ $UPLOAD_WETRANSFER = true ] && echo "🔗 [WeTransfer](${{ steps.wetransfer.outputs.url }})" >> release.txt
         echo "status=success" >> $GITHUB_OUTPUT

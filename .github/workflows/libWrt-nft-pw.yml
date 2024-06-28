@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: znm2-lede-ssrp
+name: znm2-libWrt-fw4-pw
 
 on:
   repository_dispatch:
@@ -20,12 +20,12 @@ on:
         default: 'false'
 
 env:
-  REPO_URL: https://github.com/coolsnowwolf/lede.git
-  REPO_BRANCH: master
-  FEEDS_CONF: ./lede/feeds.conf.default
-  CONFIG_FILE: ./config/lede/znm2-lede.config
-  DIY_P1_SH: ./scripts/lede/diy-part1.sh
-  DIY_P2_SH: ./scripts/lede/diy-part2.sh
+  REPO_URL: https://github.com/King-Of-Knights/openwrt-6.x
+  REPO_BRANCH: main
+  FEEDS_CONF: ./feeds.conf.default
+  CONFIG_FILE: ./config/libWrt/fw4-pw-sqm.config
+  DIY_P1_SH: ./scripts/libWrt/diy-part1.sh
+  DIY_P2_SH: ./scripts/libWrt/diy-part2.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: false
