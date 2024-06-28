@@ -22,7 +22,7 @@ on:
 env:
   REPO_URL: https://github.com/King-Of-Knights/openwrt-6.x
   REPO_BRANCH: main
-  FEEDS_CONF: ./feeds.conf.default
+  FEEDS_CONF: ./feeds/libWrt/feeds.conf.fw3
   CONFIG_FILE: ./config/libWrt/fw3.config
   DIY_P1_SH: ./scripts/libWrt/diy-part1.sh
   DIY_P2_SH: ./scripts/libWrt/diy-part2.sh
@@ -85,6 +85,13 @@ jobs:
 
     - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a
+
+    - name: Modify feeds
+      run: |
+        cd openwrt 
+        ./scripts/feeds install -a -f -p passwall_packages
+        ./scripts/feeds install -a -f -p passwall
+        ./scripts/feeds install -a -f -p passwall2      
 
     - name: Install feeds
       run: cd openwrt && ./scripts/feeds install -a
