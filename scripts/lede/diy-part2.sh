@@ -11,10 +11,10 @@
 #
 
 # Modify default IP
-sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
+# sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
 
 # Enable Cache
-echo -e 'CONFIG_DEVEL=y\nCONFIG_CCACHE=y' >> .config
+# echo -e 'CONFIG_DEVEL=y\nCONFIG_CCACHE=y' >> .config
 
 # msd_lite
 git clone --depth=1 https://github.com/ximiTech/luci-app-msd_lite package/luci-app-msd_lite
