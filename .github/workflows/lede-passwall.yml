@@ -19,6 +19,9 @@ on:
         required: false
         default: 'false'
 
+  schedule:
+    - cron: 0 21 * * *        
+
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede.git
   REPO_BRANCH: master

@@ -19,6 +19,9 @@ on:
         required: false
         default: 'false'
 
+  schedule:
+    - cron: 0 21 * * *            
+
 env:
   REPO_URL: https://github.com/King-Of-Knights/openwrt-6.x
   REPO_BRANCH: main
