@@ -18,9 +18,9 @@ on:
         description: 'SSH connection to Actions'
         required: false
         default: 'false'
-
+# 默认为utc时间，北京时间需要减去8
   schedule:
-    - cron: 0 20 * * *            
+    - cron: 0 12 * * *            
 
 env:
   REPO_URL: https://github.com/King-Of-Knights/openwrt-6.x
