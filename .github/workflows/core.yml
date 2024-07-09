@@ -103,9 +103,16 @@ jobs:
         with:
           key: ${{env.TARGET}}-${{env.REPO_SOURCE}}-${{env.REPO_BRANCH}}-${{env.WRT_HASH}}
           path: |
-            ./openwrt/.ccache
+            ./openwrt/dl
             ./openwrt/staging_dir/host*
             ./openwrt/staging_dir/tool*
+
+      - name: Calculate cache size
+        run: |
+          echo "Cache size:"
+          du -sh ./openwrt/dl
+          du -sh ./openwrt/staging_dir/host*
+          du -sh ./openwrt/staging_dir/tool*
 
       - name: Load custom feeds
         run: |
