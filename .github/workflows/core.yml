@@ -15,7 +15,10 @@ on:
     inputs:
       TARGET:
         required: true
-        type: string      
+        type: string   
+      REPO_SOURCE:
+        required: true
+        type: string                
       REPO_URL:
         required: true
         type: string
@@ -40,6 +43,7 @@ on:
 
 env:
   TARGET: ${{inputs.TARGET}}
+  REPO_SOURCE: ${{inputs.REPO_SOURCE}}   
   REPO_URL: ${{inputs.REPO_URL}}
   REPO_BRANCH: ${{inputs.REPO_BRANCH}}
   FEEDS_CONF: ${{inputs.FEEDS_CONF}}
@@ -98,7 +102,7 @@ jobs:
       id: cache
       uses: actions/cache@v2
       with:
-        key: ${{env.TARGET}}-${{env.REPO_URL}}-${{env.REPO_BRANCH}}-${{env.WRT_HASH}}
+        key: ${{env.TARGET}}-${{env.REPO_SOURCE}}-${{env.REPO_BRANCH}}-${{env.WRT_HASH}}
         path: |
             ./openwrt/.ccache
             ./openwrt/staging_dir/host*
@@ -164,7 +168,7 @@ jobs:
     - name: Release Firmware
       uses: softprops/action-gh-release@master
       with:
-        tag_name: ${{env.TARGET}}_${{env.FILE_DATE}}
+        tag_name: ${{env.TARGET}}_${{REPO_SOURCE}}_${{env.FILE_DATE}}
         files: ${{ env.FIRMWARE }}/*
         body: |
           适用于兆能M2的固件。

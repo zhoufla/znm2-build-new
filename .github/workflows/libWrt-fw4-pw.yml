@@ -33,17 +33,19 @@ jobs:
     with:
       #编译平台
       TARGET: znm2-libWrt-fw4-pw
-      #默认主题
+      #源码
+      REPO_SOURCE: LibWrt
+      #源码地址
       REPO_URL: https://github.com/King-Of-Knights/openwrt-6.x
-      #默认主机名
+      #源码分支
       REPO_BRANCH: main
-      #默认WIFI名
+      #软件源
       FEEDS_CONF: ./feeds/libWrt/feeds.conf.fw3
-      #默认地址
+      #配置文件
       CONFIG_FILE: ./config/libWrt/fw4-pw-sqm.config
-      #默认密码，仅作提示，修改无用
+      #自定义脚本1
       DIY_P1_SH: ./scripts/libWrt/diy-part1.sh
-      #默认源码
+      #自定义脚本2
       DIY_P2_SH: ./scripts/libWrt/diy-part2.sh
-      #默认分支
+      #预安装脚本
       PRE_INSTALL_SH: ./scripts/pre_install_passwall.sh
