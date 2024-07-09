@@ -100,7 +100,7 @@ jobs:
           echo "OPENWRT_PATH=$PWD" >> $GITHUB_ENV
 
       - name: Cache
-        uses: HiGarfield/cachewrtbuild@main
+        uses: stupidloud/cachewrtbuild@main
         with:
           ccache: true
           mixkey: ${{env.TARGET}}-${{env.REPO_SOURCE}}-${{env.REPO_BRANCH}}-${{env.WRT_HASH}}
