@@ -97,23 +97,6 @@ jobs:
           ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
           cd ./openwrt/ && echo "WRT_HASH=$(git log -1 --pretty=format:'%h')" >> $GITHUB_ENV
 
-      - name: Cache
-        id: cache
-        uses: actions/cache@v2
-        with:
-          key: ${{env.TARGET}}-${{env.REPO_SOURCE}}-${{env.REPO_BRANCH}}-${{env.WRT_HASH}}
-          path: |
-            ./openwrt/dl
-            ./openwrt/staging_dir/host*
-            ./openwrt/staging_dir/tool*
-
-      - name: Calculate cache size
-        run: |
-          echo "Cache size:"
-          du -sh ./openwrt/dl
-          du -sh ./openwrt/staging_dir/host*
-          du -sh ./openwrt/staging_dir/tool*
-
       - name: Load custom feeds
         run: |
           [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
