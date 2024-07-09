@@ -29,7 +29,7 @@ permissions: write-all
 #CI任务
 jobs:
     #调用公用编译核心WRT-CORE.yml
-    uses: ./.github/workflows/core.yml
+    uses: ./core.yml
     with:
       #编译平台
       TARGET: znm2-libWrt-fw4-pw
