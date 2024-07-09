@@ -51,8 +51,6 @@ env:
   DIY_P1_SH: ${{inputs.DIY_P1_SH}}
   DIY_P2_SH: ${{inputs.DIY_P2_SH}}
   PRE_INSTALL_SH: ${{inputs.PRE_INSTALL_SH}}
-  UPLOAD_FIRMWARE: true
-  UPLOAD_RELEASE: true
   TZ: Asia/Shanghai
 
 jobs:
@@ -159,7 +157,7 @@ jobs:
 
       - name: Organize files
         id: organize
-        if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
+        if: steps.compile.outputs.status == 'success'  && !cancelled()
         run: |
           cd openwrt/bin/targets/*/*
           rm -rf packages
@@ -168,6 +166,7 @@ jobs:
 
       - name: Release Firmware
         uses: softprops/action-gh-release@master
+        if: steps.compile.outputs.status == 'success'  && !cancelled()
         with:
           tag_name: ${{env.TARGET}}_${{env.REPO_SOURCE}}_${{env.FILE_DATE}}
           files: ${{ env.FIRMWARE }}/*
