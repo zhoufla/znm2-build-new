@@ -102,7 +102,7 @@ jobs:
       - name: Cache
         uses: HiGarfield/cachewrtbuild@main
         with:
-          ccache: false
+          ccache: true
           mixkey: ${{env.TARGET}}-${{env.REPO_SOURCE}}-${{env.REPO_BRANCH}}-${{env.WRT_HASH}}
           prefix: ${{ env.OPENWRT_PATH }}
 
