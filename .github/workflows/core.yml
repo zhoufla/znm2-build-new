@@ -95,7 +95,16 @@ jobs:
           df -hT $PWD
           git clone --depth=1 $REPO_URL -b $REPO_BRANCH openwrt
           ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
-          cd ./openwrt/ && echo "WRT_HASH=$(git log -1 --pretty=format:'%h')" >> $GITHUB_ENV
+          cd openwrt
+          echo "WRT_HASH=$(git log -1 --pretty=format:'%h')" >> $GITHUB_ENV
+          echo "OPENWRT_PATH=$PWD" >> $GITHUB_ENV
+
+      - name: Cache
+        uses: HiGarfield/cachewrtbuild@main
+        with:
+          ccache: false
+          mixkey: ${{env.TARGET}}-${{env.REPO_SOURCE}}-${{env.REPO_BRANCH}}-${{env.WRT_HASH}}
+          prefix: ${{ env.OPENWRT_PATH }}
 
       - name: Load custom feeds
         run: |
