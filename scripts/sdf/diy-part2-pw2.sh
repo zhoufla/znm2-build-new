@@ -23,4 +23,4 @@ sed -i -r "s#navbar_proxy = 'openclash'#navbar_proxy = 'passwall2'#g" feeds/luci
 git clone --depth=1  https://github.com/sirpdboy/luci-app-ddns-go.git package/ddns-go
 
 # mosdns
-git clone --depth=1 https://github.com/sbwml/luci-app-mosdns package/luci-app-mosdns
+git clone --depth=1 https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
