@@ -23,165 +23,27 @@ on:
   schedule:
     - cron: 0 13 * * *            
 
-env:
-  REPO_URL: https://github.com/King-Of-Knights/openwrt-6.x
-  REPO_BRANCH: main
-  FEEDS_CONF: ./feeds/libWrt/feeds.conf.fw3
-  CONFIG_FILE: ./config/libWrt/fw4-pw-sqm.config
-  DIY_P1_SH: ./scripts/libWrt/diy-part1.sh
-  DIY_P2_SH: ./scripts/libWrt/diy-part2.sh
-  UPLOAD_FIRMWARE: true
-  UPLOAD_RELEASE: true
-  TZ: Asia/Shanghai
+#CI权限
+permissions: write-all
 
+#CI任务
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-
-    - name: Free Disk Space (Ubuntu)
-      uses: jlumbroso/free-disk-space@main
-      with:
-        # this might remove tools that are actually needed,
-        # if set to "true" but frees about 6 GB
-        tool-cache: true
-        
-        # all of these default to true, but feel free to set to
-        # "false" if necessary for your workflow
-        android: true
-        dotnet: true
-        haskell: true
-        large-packages: true
-        swap-storage: true
-
-    - name: Checkout
-      uses: actions/checkout@v3.1.0
-
-    - name: Initialization environment
-      env:
-        DEBIAN_FRONTEND: noninteractive
-      run: |
-        sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc
-        sudo bash -c 'bash <(curl -s https://build-scripts.immortalwrt.org/init_build_environment.sh)'
-        sudo timedatectl set-timezone "$TZ"
-        git config --global user.email "aa@163.com"
-        git config --global user.name "aa"
-        sudo mkdir -p /workdir
-        sudo chown $USER:$GROUPS /workdir
-
-    - name: Clone source code
-      working-directory: /workdir
-      run: |
-        df -hT $PWD
-        git clone --depth=1 $REPO_URL -b $REPO_BRANCH openwrt
-        ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
-
-    - name: Load custom feeds
-      run: |
-        [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
-        chmod +x $DIY_P1_SH
-        cd openwrt
-        $GITHUB_WORKSPACE/$DIY_P1_SH
-
-    - name: Update feeds
-      run: cd openwrt && ./scripts/feeds update -a
-
-    - name: Modify feeds
-      run: |
-        cd openwrt 
-        ./scripts/feeds install -a -f -p passwall_packages
-        ./scripts/feeds install -a -f -p passwall
-        ./scripts/feeds install -a -f -p passwall2       
-
-    - name: Install feeds
-      run: cd openwrt && ./scripts/feeds install -a
-
-    - name: Load custom configuration
-      run: |
-        [ -e files ] && mv files openwrt/files
-        [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
-        chmod +x $DIY_P2_SH
-        cd openwrt
-        $GITHUB_WORKSPACE/$DIY_P2_SH
-
-    - name: SSH connection to Actions
-      uses: P3TERX/ssh2actions@v1.0.0
-      if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
-      env:
-        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-
-    - name: Download package
-      id: package
-      run: |
-        cd openwrt
-        make defconfig
-        make download -j8
-        find dl -size -1024c -exec ls -l {} \;
-        find dl -size -1024c -exec rm -f {} \;
-
-    - name: Compile the firmware
-      id: compile
-      run: |
-        cd openwrt
-        echo -e "$(nproc) thread compile"
-        make -j$(nproc) || make -j1 || make -j1 V=s
-        echo "status=success" >> $GITHUB_OUTPUT
-        grep '^CONFIG_TARGET.*DEVICE.*=y' .config | sed -r 's/.*DEVICE_(.*)=y/\1/' > DEVICE_NAME
-        [ -s DEVICE_NAME ] && echo "DEVICE_NAME=_$(cat DEVICE_NAME)" >> $GITHUB_ENV
-        echo "FILE_DATE=_$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
-
-    - name: Check space usage
-      if: (!cancelled())
-      run: df -hT
-
-    - name: Organize files
-      id: organize
-      if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
-      run: |
-        cd openwrt/bin/targets/*/*
-        rm -rf packages
-        echo "FIRMWARE=$PWD" >> $GITHUB_ENV
-        echo "status=success" >> $GITHUB_OUTPUT
-
-    - name: Upload firmware directory
-      uses: actions/upload-artifact@v3
-      if: steps.organize.outputs.status == 'success' && !cancelled()
-      with:
-        name: znm2-libWrt-fw4-pw-${{ env.FILE_DATE }}
-        path: ${{ env.FIRMWARE }}
-
-    - name: Generate release tag
-      id: tag
-      if: steps.compile.outputs.status == 'success' && env.UPLOAD_RELEASE == 'true' && !cancelled()
-      run: |
-        echo "release_tag=znm2-libWrt-fw4-pw-$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_OUTPUT
-        touch release.txt
-        echo "znm2-libWrt-fw4-pw firmware" >> release.txt
-        echo "status=success" >> $GITHUB_OUTPUT
-
-    - name: Upload firmware to release
-      uses: softprops/action-gh-release@v1
-      if: steps.tag.outputs.status == 'success' && !cancelled()
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ steps.tag.outputs.release_tag }}
-        body_path: release.txt
-        files: ${{ env.FIRMWARE }}/*
-
-    - name: Delete workflow runs
-      uses: GitRML/delete-workflow-runs@main
-      with:
-        retain_days: 1
-        keep_minimum_runs: 3
-
-    - name: Remove old Releases
-      uses: dev-drprasad/delete-older-releases@v0.1.0
-      if: env.UPLOAD_RELEASE == 'true' && !cancelled()
-      with:
-        keep_latest: 9
-        delete_tags: true
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    #调用公用编译核心WRT-CORE.yml
+    uses: ./.github/workflows/WRT-CORE.yml
+    with:
+      #编译平台
+      TARGET: znm2-libWrt-fw4-pw
+      #默认主题
+      REPO_URL: https://github.com/King-Of-Knights/openwrt-6.x
+      #默认主机名
+      REPO_BRANCH: main
+      #默认WIFI名
+      FEEDS_CONF: ./feeds/libWrt/feeds.conf.fw3
+      #默认地址
+      CONFIG_FILE: ./config/libWrt/fw4-pw-sqm.config
+      #默认密码，仅作提示，修改无用
+      DIY_P1_SH: ./scripts/libWrt/diy-part1.sh
+      #默认源码
+      DIY_P2_SH: ./scripts/libWrt/diy-part2.sh
+      #默认分支
+      PRE_INSTALL_SH: ./scripts/pre_install_passwall.sh
