@@ -1,35 +1,24 @@
-#
-# Copyright (c) 2019-2020 P3TERX <https://p3terx.com>
-#
-# This is free software, licensed under the MIT License.
-# See /LICENSE for more information.
-#
-# https://github.com/P3TERX/Actions-OpenWrt
-# Description: Build OpenWrt using GitHub Actions
-#
-
+#CI项目
 name: znm2-libWrt-fw4-pw
 
+#CI计划
 on:
-  repository_dispatch:
-  workflow_dispatch:
-    inputs:
-      ssh:
-        description: 'SSH connection to Actions'
-        required: false
-        default: 'false'
-
 # 默认为utc时间，北京时间需要减去8
   schedule:
-    - cron: 0 13 * * *            
+    - cron: 0 13 * * *
 
 #CI权限
 permissions: write-all
 
 #CI任务
 jobs:
+  wrt_config:
+    name: znm2-libWrt-fw4-pw
+    strategy:
+      fail-fast: false
+
     #调用公用编译核心WRT-CORE.yml
-    uses: ./core.yml
+    uses: ./.github/workflows/WRT-CORE.yml
     with:
       #编译平台
       TARGET: znm2-libWrt-fw4-pw
@@ -49,3 +38,4 @@ jobs:
       DIY_P2_SH: ./scripts/libWrt/diy-part2.sh
       #预安装脚本
       PRE_INSTALL_SH: ./scripts/pre_install_passwall.sh
+
