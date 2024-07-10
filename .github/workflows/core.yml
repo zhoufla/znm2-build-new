@@ -167,10 +167,10 @@ jobs:
         uses: softprops/action-gh-release@master
         if: steps.compile.outputs.status == 'success'  && !cancelled()
         with:
-          tag_name: ${{env.TARGET}}_${{env.REPO_SOURCE}}_${{env.FILE_DATE}}
+          tag_name: ${{env.TARGET}}_${{env.FILE_DATE}}
           files: ${{ env.FIRMWARE }}/*
           body: |
-            适用于兆能M2的固件。
+            适用于兆能M2的无wifi固件。
             
             源码：${{env.REPO_URL}}
             分支：${{env.REPO_BRANCH}}
