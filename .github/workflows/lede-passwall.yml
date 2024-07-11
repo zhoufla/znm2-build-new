@@ -29,11 +29,11 @@ jobs:
       #源码分支
       REPO_BRANCH: master
       #软件源
-      FEEDS_CONF: ./feeds/lede/feeds.conf.passwall
+      FEEDS_CONF: feeds.conf.default
       #配置文件
       CONFIG_FILE: ./config/lede/znm2-lede-passwall.config
       #自定义脚本1
-      DIY_P1_SH: ./scripts/lede/diy-part1.sh
+      DIY_P1_SH: ./scripts/add_pw_feeds.sh
       #自定义脚本2
       DIY_P2_SH: ./scripts/lede/diy-part2.sh
       #预安装脚本

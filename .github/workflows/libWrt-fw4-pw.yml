@@ -29,11 +29,11 @@ jobs:
       #源码分支
       REPO_BRANCH: main
       #软件源
-      FEEDS_CONF: ./feeds/libWrt/feeds.conf.fw3
+      FEEDS_CONF: feeds.conf.default
       #配置文件
       CONFIG_FILE: ./config/libWrt/fw4-pw-sqm.config
       #自定义脚本1
-      DIY_P1_SH: ./scripts/libWrt/diy-part1.sh
+      DIY_P1_SH: ./scripts/add_pw_feeds.sh
       #自定义脚本2
       DIY_P2_SH: ./scripts/libWrt/diy-part2.sh
       #预安装脚本
