@@ -1,0 +1,38 @@
+#CI项目
+name: znm2-libWrt-fw4-mihomo
+
+#CI计划
+on:
+  # 手动执行
+  workflow_dispatch:
+
+
+#CI权限
+permissions: write-all
+
+#CI任务
+jobs:
+  build:
+    name: znm2-libWrt-fw4-mihomo
+
+    #调用公用编译核心WRT-CORE.yml
+    uses: ./.github/workflows/core.yml
+    with:
+      #编译平台
+      TARGET: znm2-libWrt-fw4-mihomo
+      #源码
+      REPO_SOURCE: LibWrt
+      #源码地址
+      REPO_URL: https://github.com/LiBwrt-op/openwrt-6.x
+      #源码分支
+      REPO_BRANCH: main
+      #软件源
+      FEEDS_CONF: feeds.conf.default
+      #配置文件
+      CONFIG_FILE: ./config/libWrt/fw4-mihomo.config
+      #自定义脚本1
+      DIY_P1_SH: ./scripts/diy-part1.sh
+      #自定义脚本2
+      DIY_P2_SH: ./scripts/libWrt/diy-part2.sh
+      #预安装脚本
+      PRE_INSTALL_SH: ./scripts/pre_install.sh
