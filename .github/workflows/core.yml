@@ -103,7 +103,7 @@ jobs:
         uses: stupidloud/cachewrtbuild@main
         with:
           ccache: true
-          mixkey: ${{env.TARGET}}-${{env.REPO_SOURCE}}-${{env.REPO_BRANCH}}
+          mixkey: ${{env.TARGET}}-${{env.REPO_SOURCE}}-${{env.REPO_BRANCH}}-${{env.WRT_HASH}}
           prefix: ${{ env.OPENWRT_PATH }}
 
       - name: Load custom feeds
