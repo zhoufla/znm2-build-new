@@ -22,7 +22,7 @@ jobs:
       #源码
       REPO_SOURCE: LibWrt
       #源码地址
-      REPO_URL: https://github.com/zhoufla/openwrt-6.x-wifi
+      REPO_URL: https://github.com/zhoufla/openwrt-6.x-breeze
       #源码分支
       REPO_BRANCH: main
       #软件源
