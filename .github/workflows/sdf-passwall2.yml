@@ -30,7 +30,7 @@ jobs:
       #配置文件
       CONFIG_FILE: ./config/sdf/passwall2.config
       #自定义脚本1
-      DIY_P1_SH: ./scripts/sdf/add_pw_feeds.sh
+      DIY_P1_SH: ./scripts/add_pw_feeds.sh
       #自定义脚本2
       DIY_P2_SH: ./scripts/sdf/diy-part2-pw2.sh
       #预安装脚本

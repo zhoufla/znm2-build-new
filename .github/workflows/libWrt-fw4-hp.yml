@@ -29,7 +29,7 @@ jobs:
       #软件源
       FEEDS_CONF: feeds.conf.default
       #配置文件
-      CONFIG_FILE: ./config/libWrt/fw4-hp-sqm.config
+      CONFIG_FILE: ./config/libWrt/fw4-hp.config
       #自定义脚本1
       DIY_P1_SH: ./scripts/diy-part1.sh
       #自定义脚本2
