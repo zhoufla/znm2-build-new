@@ -33,7 +33,7 @@ jobs:
       #配置文件
       CONFIG_FILE: ./config/libWrt/fw4-pw.config
       #自定义脚本1
-      DIY_P1_SH: ./scripts/add_pw_feeds.sh
+      DIY_P1_SH: ./scripts/libWrt/diy-part1.sh
       #自定义脚本2
       DIY_P2_SH: ./scripts/libWrt/diy-part2.sh
       #预安装脚本
