@@ -1,0 +1,74 @@
+From 0c2adb739c5454ec06b99e0282518146fc79c28f Mon Sep 17 00:00:00 2001
+From: tiffany-929 <303889140@qq.com>
+Date: Thu, 5 Sep 2024 15:15:41 +0800
+Subject: [PATCH] fix upnp
+
+---
+ package/emortal/default-settings/Makefile                | 5 +++++
+ .../emortal/default-settings/files/99-default-settings   | 3 +++
+ .../default-settings/files/fix-upnp/51-liuy-miniupnpd    | 8 ++++++++
+ .../default-settings/files/fix-upnp/update-upnp.sh       | 9 +++++++++
+ 4 files changed, 25 insertions(+)
+ create mode 100644 package/emortal/default-settings/files/fix-upnp/51-liuy-miniupnpd
+ create mode 100644 package/emortal/default-settings/files/fix-upnp/update-upnp.sh
+
+diff --git a/package/emortal/default-settings/Makefile b/package/emortal/default-settings/Makefile
+index 75e4f37336..17a2700612 100644
+--- a/package/emortal/default-settings/Makefile
++++ b/package/emortal/default-settings/Makefile
+@@ -35,6 +35,11 @@ define Package/default-settings/install
+   
+ 	$(INSTALL_DIR) $(1)/etc/uci-defaults
+ 	$(INSTALL_BIN) ./files/99-default-settings $(1)/etc/uci-defaults/
++	
++	$(INSTALL_DATA) ./files/fix-upnp/51-liuy-miniupnpd $(1)/etc/51-liuy-miniupnpd
++	$(INSTALL_DATA) ./files/fix-upnp/update-upnp.sh $(1)/etc/update-upnp.sh
++	
++	
+ endef
+ 
+ define Package/default-settings-chn/install
+diff --git a/package/emortal/default-settings/files/99-default-settings b/package/emortal/default-settings/files/99-default-settings
+index 5f26c3e7d6..60c8411bda 100755
+--- a/package/emortal/default-settings/files/99-default-settings
++++ b/package/emortal/default-settings/files/99-default-settings
+@@ -20,4 +20,7 @@ ln -sf "/sbin/ip" "/usr/bin/ip"
+ [ -f '/etc/99-distfeeds.conf' ] && mv '/etc/99-distfeeds.conf' '/etc/opkg/distfeeds.conf'
+ sed -ri '/check_signature/s@^[^#]@#&@' /etc/opkg.conf
+ 
++[ -f '/etc/51-liuy-miniupnpd' ] && mv '/etc/51-liuy-miniupnpd' '/etc/hotplug.d/iface/51-liuy-miniupnpd'
++[ -f '/etc/update-upnp.sh' ] && mv '/etc/update-upnp.sh' '/usr/update-upnp.sh'
++
+ exit 0
+diff --git a/package/emortal/default-settings/files/fix-upnp/51-liuy-miniupnpd b/package/emortal/default-settings/files/fix-upnp/51-liuy-miniupnpd
+new file mode 100644
+index 0000000000..27504e242b
+--- /dev/null
++++ b/package/emortal/default-settings/files/fix-upnp/51-liuy-miniupnpd
+@@ -0,0 +1,8 @@
++#!/bin/sh
++
++sleep 10
++#当wan口网卡启动时，更新一下upnp服务中的假公网IP
++if [ "$ACTION" = "ifup" ] && [ "$INTERFACE" = "wan" ]; then
++    #这里指定第二个脚本位置
++    /usr/update-upnp.sh
++fi
+diff --git a/package/emortal/default-settings/files/fix-upnp/update-upnp.sh b/package/emortal/default-settings/files/fix-upnp/update-upnp.sh
+new file mode 100644
+index 0000000000..87200d8a2c
+--- /dev/null
++++ b/package/emortal/default-settings/files/fix-upnp/update-upnp.sh
+@@ -0,0 +1,9 @@
++#!/bin/bash
++
++# 获取公网IP并赋值给环境变量PUBLIC_IP
++PUBLIC_IP=$(curl myip.ipip.net | sed -n 's/当前 IP：\([0-9\.]*\).*/\1/p')
++
++# 使用获取到的IP地址设置upnpd的external_ip
++uci set upnpd.config.external_ip="$PUBLIC_IP"
++uci commit upnpd
++/etc/init.d/miniupnpd restart
+-- 
+2.34.1
+
