@@ -157,7 +157,6 @@ jobs:
           echo "status=success" >> $GITHUB_OUTPUT
           grep '^CONFIG_TARGET.*DEVICE.*=y' .config | sed -r 's/.*DEVICE_(.*)=y/\1/' > DEVICE_NAME
           [ -s DEVICE_NAME ] && echo "DEVICE_NAME=_$(cat DEVICE_NAME)" >> $GITHUB_ENV
-          echo "FILE_DATE=$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
 
 
       - name: Organize files
@@ -173,10 +172,10 @@ jobs:
         uses: softprops/action-gh-release@master
         if: steps.compile.outputs.status == 'success'  && !cancelled()
         with:
-          tag_name: ${{env.TARGET}}_${{env.FILE_DATE}}
+          tag_name: ${{env.TARGET}}_${{env.DATE}}
           files: ${{ env.FIRMWARE }}/*
           body: |
-            适用于兆能M2的无wifi固件。
+            适用于IPQ60XX的无wifi固件。
             
             源码：${{env.REPO_URL}}
             分支：${{env.REPO_BRANCH}}
