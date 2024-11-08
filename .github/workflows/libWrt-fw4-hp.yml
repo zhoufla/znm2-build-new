@@ -25,7 +25,7 @@ jobs:
       #源码地址
       REPO_URL: https://github.com/zhoufla/openwrt-6.x-breeze
       #源码分支
-      REPO_BRANCH: main
+      REPO_BRANCH: openwrt-24.10
       #软件源
       FEEDS_CONF: feeds.conf.default
       #配置文件
