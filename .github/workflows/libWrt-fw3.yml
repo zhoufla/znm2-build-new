@@ -13,7 +13,7 @@ permissions: write-all
 #CI任务
 jobs:
   build:
-    name: znm2-libWrt-fw3
+    name: libWrt-fw3
 
     #调用公用编译核心WRT-CORE.yml
     uses: ./.github/workflows/core.yml

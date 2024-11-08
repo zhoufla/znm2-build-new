@@ -15,7 +15,7 @@ permissions: write-all
 #CI任务
 jobs:
   build:
-    name: znm2-libWrt-fw4-pw
+    name: libWrt-fw4-pw
 
     #调用公用编译核心WRT-CORE.yml
     uses: ./.github/workflows/core.yml
