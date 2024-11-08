@@ -1,5 +1,5 @@
 #CI项目
-name: znm2-libWrt-fw4-hp
+name: libWrt-fw4-hp
 
 #CI计划
 on:

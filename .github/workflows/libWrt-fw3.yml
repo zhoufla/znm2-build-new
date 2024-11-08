@@ -1,5 +1,5 @@
 #CI项目
-name: znm2-libWrt-fw3
+name: libWrt-fw3
 
 #CI计划
 on:

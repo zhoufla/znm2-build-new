@@ -1,5 +1,5 @@
 #CI项目
-name: znm2-libWrt-fw4-mihomo
+name: libWrt-fw4-mihomo
 
 #CI计划
 on:
