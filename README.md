@@ -8,7 +8,7 @@
 |-------|------------------------------------------------|------|
 | 4.4.6 | https://github.com/sdf8057/ipq6000             | 停止更新 |
 | 6.1.x | https://github.com/coolsnowwolf/lede.git       | 持续更新 |
-| 6.6.x | https://github.com/King-Of-Knights/openwrt-6.x | 持续更新 |
+| 6.6.x | https://github.com/LiBwrt/openwrt-6.x <br> https://github.com/King-Of-Knights/openwrt-6.x | 持续更新 |
 
 ## 流水线
 
