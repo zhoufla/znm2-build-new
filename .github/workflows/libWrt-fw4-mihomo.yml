@@ -6,8 +6,8 @@ on:
   # 手动执行
   workflow_dispatch:
   # 默认为utc时间，北京时间需要减去8
-  schedule:
-    - cron: 0 14 1/7 * *
+  # schedule:
+  #   - cron: 0 14 1/7 * *
 
 #CI权限
 permissions: write-all
