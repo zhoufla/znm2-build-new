@@ -5,6 +5,8 @@ name: libWrt-fw4-hp
 on:
   # 手动执行
   workflow_dispatch:
+  schedule:
+    - cron: 0 14 1/7 * *  
 
 
 #CI权限
