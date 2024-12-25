@@ -171,7 +171,7 @@ jobs:
         uses: softprops/action-gh-release@v2.1.0
         if: steps.compile.outputs.status == 'success'  && !cancelled()
         with:
-          tag_name: ${{env.TARGET}}_${{env.DATE}}
+          tag_name: ${{env.TARGET}}_${{env.FILE_DATE}}
           files: ${{ env.FIRMWARE }}/*
           body: |
             云编译openwrt固件。
