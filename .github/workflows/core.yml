@@ -171,10 +171,10 @@ jobs:
         uses: softprops/action-gh-release@v2
         if: steps.compile.outputs.status == 'success'  && !cancelled()
         with:
-          tag_name: ${{env.TARGET}}_${{env.FILE_DATE}}
+          tag_name: ${{env.TARGET}}_${{env.DATE}}
           files: ${{ env.FIRMWARE }}/*
           body: |
-            适用于IPQ60XX的无wifi固件。
+            云编译openwrt固件。
             
             源码：${{env.REPO_URL}}
             分支：${{env.REPO_BRANCH}}
