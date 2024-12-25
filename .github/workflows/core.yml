@@ -168,7 +168,7 @@ jobs:
           echo "status=success" >> $GITHUB_OUTPUT
 
       - name: Release Firmware
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v2.1.0
         if: steps.compile.outputs.status == 'success'  && !cancelled()
         with:
           tag_name: ${{env.TARGET}}_${{env.DATE}}
