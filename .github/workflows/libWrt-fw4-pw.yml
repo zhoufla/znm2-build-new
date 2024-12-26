@@ -35,7 +35,7 @@ jobs:
       #自定义脚本1
       DIY_P1_SH: ./scripts/add_pw_feeds.sh
       #自定义脚本2
-      DIY_P2_SH: ./scripts/libWrt/diy-part2.sh
+      DIY_P2_SH: ./scripts/diy-part2.sh
       #预安装脚本
       PRE_INSTALL_SH: ./scripts/pre_install_passwall.sh
 
