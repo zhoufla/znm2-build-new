@@ -13,7 +13,7 @@ echo "net.netfilter.nf_conntrack_udp_timeout_stream=60" >> files/etc/sysctl.conf
 
 
 #高通平台调整
-if [[ $TARGET == *"libWrt"* ]]; then
+if [[ $TARGET == *"ipq"* ]]; then
 	#取消nss相关feed
 	echo "CONFIG_FEED_nss_packages=n" >> ./.config
 	echo "CONFIG_FEED_sqm_scripts_nss=n" >> ./.config
