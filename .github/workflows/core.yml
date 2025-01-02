@@ -106,38 +106,25 @@ jobs:
           mixkey: ${{env.TARGET}}-${{env.REPO_SOURCE}}-${{env.REPO_BRANCH}}-${{env.WRT_HASH}}
           prefix: ${{ env.OPENWRT_PATH }}
 
-      - name: Load custom feeds
+      - name: Update Feeds
         run: |
-          [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
-          if [ -e "$DIY_P1_SH" ]; then
-          chmod +x "$DIY_P1_SH"
           cd openwrt
-          "$GITHUB_WORKSPACE/$DIY_P1_SH"
-          fi
 
-      - name: Update feeds
-        run: cd openwrt && ./scripts/feeds update -a
+          ./scripts/feeds update -a
+          ./scripts/feeds install -a        
 
-      - name: Modify feeds
+      - name: Custom Packages
         run: |
-          if [ -e "$PRE_INSTALL_SH" ]; then
-          chmod +x $PRE_INSTALL_SH
-          cd openwrt
-          $GITHUB_WORKSPACE/$PRE_INSTALL_SH
-          fi          
+          cd ./openwrt/package/
+          $GITHUB_WORKSPACE/Scripts/Packages.sh
+          $GITHUB_WORKSPACE/Scripts/Handles.sh
 
-      - name: Install feeds
-        run: cd openwrt && ./scripts/feeds install -a
-
-      - name: Load custom configuration
+      - name: Custom Settings
         run: |
           [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
-          if [ -e "$DIY_P2_SH" ]; then          
-          chmod +x $DIY_P2_SH
-          cd openwrt
-          $GITHUB_WORKSPACE/$DIY_P2_SH
-          fi  
+          cd ./openwrt
 
+          $GITHUB_WORKSPACE/scripts/Settings.sh         
 
       - name: Download package
         id: package
