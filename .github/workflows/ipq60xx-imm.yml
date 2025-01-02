@@ -32,10 +32,4 @@ jobs:
       FEEDS_CONF: feeds.conf.default
       #配置文件
       CONFIG_FILE: ./config/libWrt/fw4-pw.config
-      #自定义脚本1
-      DIY_P1_SH: ./scripts/diy-part1.sh
-      #自定义脚本2
-      DIY_P2_SH: ./scripts/diy-part2.sh
-      #预安装脚本
-      PRE_INSTALL_SH: ./scripts/pre_install.sh
 

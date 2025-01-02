@@ -29,9 +29,3 @@ jobs:
       FEEDS_CONF: feeds.conf.default
       #配置文件
       CONFIG_FILE: ./config/sdf/passwall.config
-      #自定义脚本1
-      DIY_P1_SH: ./scripts/sdf/diy-part1.sh
-      #自定义脚本2
-      DIY_P2_SH: ./scripts/sdf/diy-part2.sh
-      #预安装脚本
-      PRE_INSTALL_SH: ./scripts/pre_install_passwall.sh

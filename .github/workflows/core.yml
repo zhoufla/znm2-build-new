@@ -31,15 +31,6 @@ on:
       CONFIG_FILE:
         required: true
         type: string
-      DIY_P1_SH:
-        required: true
-        type: string
-      DIY_P2_SH:
-        required: true
-        type: string
-      PRE_INSTALL_SH:
-        required: true
-        type: string
 
 env:
   TARGET: ${{inputs.TARGET}}
