@@ -116,8 +116,8 @@ jobs:
       - name: Custom Packages
         run: |
           cd ./openwrt/package/
-          $GITHUB_WORKSPACE/Scripts/Packages.sh
-          $GITHUB_WORKSPACE/Scripts/Handles.sh
+          $GITHUB_WORKSPACE/scripts/Packages.sh
+          $GITHUB_WORKSPACE/scripts/Handles.sh
 
       - name: Custom Settings
         run: |
