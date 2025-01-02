@@ -20,8 +20,12 @@ jobs:
       fail-fast: false
       #max-parallel: 3
       matrix:
-        TARGET: [ipq60xx-libWrt-nowifi, ipq60xx-libWrt-wifi]
-        CONFIG_FILE: [nowifi.config, wifi.config]
+        include:
+          - TARGET: ipq60xx-libWrt-nowifi
+            CONFIG_FILE: nowifi.config
+          - TARGET: ipq60xx-libWrt-wifi
+            CONFIG_FILE: wifi.config
+
 
     #调用公用编译核心WRT-CORE.yml
     uses: ./.github/workflows/core.yml
