@@ -1,5 +1,5 @@
 #CI项目
-name: imm-x86
+name: x86-imm
 
 #CI计划
 on:
@@ -15,13 +15,13 @@ permissions: write-all
 #CI任务
 jobs:
   build:
-    name: imm-x86
+    name: x86-imm
 
     #调用公用编译核心WRT-CORE.yml
     uses: ./.github/workflows/core.yml
     with:
       #编译平台
-      TARGET: x86
+      TARGET: x86-imm
       #源码
       REPO_SOURCE: immortalwrt
       #源码地址

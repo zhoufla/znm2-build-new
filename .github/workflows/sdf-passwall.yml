@@ -1,5 +1,5 @@
 #CI项目
-name: znm2-sdf-passwall
+name: ipq60xx-sdf-4.4
 
 #CI计划
 on:
@@ -12,13 +12,13 @@ permissions: write-all
 #CI任务
 jobs:
   build:
-    name: znm2-sdf-passwall
+    name: ipq60xx-sdf-4.4
 
     #调用公用编译核心WRT-CORE.yml
     uses: ./.github/workflows/core.yml
     with:
       #编译平台
-      TARGET: znm2-sdf-passwall
+      TARGET: ipq60xx-sdf-4.4
       #源码
       REPO_SOURCE: sdf8057
       #源码地址

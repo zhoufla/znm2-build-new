@@ -1,5 +1,5 @@
 #CI项目
-name: znm2-lede-pw2
+name: ipq60xx-lede
 
 #CI计划
 on:
@@ -13,13 +13,13 @@ permissions: write-all
 #CI任务
 jobs:
   build:
-    name: znm2-lede-pw2
+    name: ipq60xx-lede
 
     #调用公用编译核心WRT-CORE.yml
     uses: ./.github/workflows/core.yml
     with:
       #编译平台
-      TARGET: znm2-lede-pw2
+      TARGET: ipq60xx-lede
       #源码
       REPO_SOURCE: lede
       #源码地址

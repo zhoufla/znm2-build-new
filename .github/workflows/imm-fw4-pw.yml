@@ -1,5 +1,5 @@
 #CI项目
-name: imm-fw4-pw
+name: ipq60xx-imm
 
 #CI计划
 on:
@@ -15,13 +15,13 @@ permissions: write-all
 #CI任务
 jobs:
   build:
-    name: imm-fw4-pw
+    name: ipq60xx-imm
 
     #调用公用编译核心WRT-CORE.yml
     uses: ./.github/workflows/core.yml
     with:
       #编译平台
-      TARGET: imm-fw4-pw
+      TARGET: ipq60xx-imm
       #源码
       REPO_SOURCE: LibWrt
       #源码地址
