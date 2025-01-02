@@ -14,14 +14,20 @@ permissions: write-all
 
 #CI任务
 jobs:
-  build:
-    name: ipq60xx-libWrt
+  config:
+    name: ${{matrix.TARGET}}
+    strategy:
+      fail-fast: false
+      #max-parallel: 3
+      matrix:
+        TARGET: [ipq60xx-libWrt-nowifi, ipq60xx-libWrt-wifi]
+        CONFIG_FILE: [nowifi.config, wifi.config]
 
     #调用公用编译核心WRT-CORE.yml
     uses: ./.github/workflows/core.yml
     with:
       #编译平台
-      TARGET: ipq60xx-libWrt
+      TARGET: ${{matrix.TARGET}}
       #源码
       REPO_SOURCE: LibWrt
       #源码地址
@@ -31,5 +37,5 @@ jobs:
       #软件源
       FEEDS_CONF: feeds.conf.default
       #配置文件
-      CONFIG_FILE: ./config/libWrt/nowifi.config
+      CONFIG_FILE: ./config/libWrt/${{matrix.CONFIG_FILE}}     
 
