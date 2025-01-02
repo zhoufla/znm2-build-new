@@ -18,4 +18,6 @@ if [[ $TARGET == *"ipq"* ]]; then
 	#设置NSS版本
 	echo "CONFIG_NSS_FIRMWARE_VERSION_11_4=n" >> ./.config
 	echo "CONFIG_NSS_FIRMWARE_VERSION_12_2=y" >> ./.config
+
+	echo "nss version has fixed!"	
 fi
