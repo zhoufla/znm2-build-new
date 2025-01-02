@@ -39,9 +39,6 @@ env:
   REPO_BRANCH: ${{inputs.REPO_BRANCH}}
   FEEDS_CONF: ${{inputs.FEEDS_CONF}}
   CONFIG_FILE: ${{inputs.CONFIG_FILE}}
-  DIY_P1_SH: ${{inputs.DIY_P1_SH}}
-  DIY_P2_SH: ${{inputs.DIY_P2_SH}}
-  PRE_INSTALL_SH: ${{inputs.PRE_INSTALL_SH}}
   TZ: Asia/Shanghai
 
 jobs:
