@@ -113,6 +113,10 @@ jobs:
           ./scripts/feeds update -a
           ./scripts/feeds install -a        
 
+      - name: Check Scripts
+        run: |
+          find ./ -maxdepth 3 -type f -iregex ".*\(txt\|sh\)$" -exec dos2unix {} \; -exec chmod +x {} \;
+
       - name: Custom Packages
         run: |
           cd ./openwrt/package/
