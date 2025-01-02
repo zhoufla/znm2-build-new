@@ -100,7 +100,7 @@ jobs:
         uses: stupidloud/cachewrtbuild@main
         with:
           ccache: true
-          mixkey: ${{env.TARGET}}-${{env.REPO_SOURCE}}-${{env.REPO_BRANCH}}-${{env.WRT_HASH}}
+          mixkey: ${{env.REPO_SOURCE}}-${{env.REPO_BRANCH}}-${{env.WRT_HASH}}
           prefix: ${{ env.OPENWRT_PATH }}
 
       - name: Update Feeds
