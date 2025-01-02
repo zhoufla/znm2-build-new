@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
   # 默认为utc时间，北京时间需要减去8
   schedule:
-    - cron: 0 13 1/7 * *
+    - cron: 0 15 1/7 * *
 
 #CI权限
 permissions: write-all
